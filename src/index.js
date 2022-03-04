@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Router from './Router';
 import reportWebVitals from './reportWebVitals';
+import { NextUIProvider } from '@nextui-org/react';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router />
+    <NextUIProvider>
+      <Router />
+    </NextUIProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
