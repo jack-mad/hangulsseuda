@@ -4,10 +4,12 @@ import Home from './components/Home/Home'
 import Signin from './components/Auth/Signin'
 import Signup from './components/Auth/Signup'
 import Auth from './routes/Auth'
+import UsersState from './context/Users/UsersState';
 
 function App() {
   return (
     <>
+    <UsersState>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -17,6 +19,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      </UsersState>
     </>
   );
 }
