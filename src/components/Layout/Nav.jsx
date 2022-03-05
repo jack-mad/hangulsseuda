@@ -16,9 +16,16 @@ export default function Nav() {
       <Container fluid >
         <Grid.Container gap={2} justify="center" alignItems="center">
           <Grid xs >
-            <Link to="/">
-              <Button auto>Home</Button>
-            </Link>
+            {
+              authStatus ?
+              <Link to="/">
+                <Button css={{ linearGradient: '45deg, $purple500 -40%, $pink500 100%' }} auto>My board</Button>
+              </Link>
+              :
+              <Link to="/">
+                <Button auto>Home</Button>
+              </Link>
+            }
           </Grid>
           <Grid xs></Grid>
           <Grid xs={6} justify="flex-end">

@@ -15,7 +15,7 @@ export default function Auth({ component: Component }) {
 
 	useEffect(() => {
 		verifyingToken()
-	}, [authStatus])
+	}, [authStatus, verifyingToken])
 
 
   return (
