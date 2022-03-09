@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import UsersContext from '../../context/Users/UsersContext'
-import { Button, Container, Grid, Avatar, Text} from '@nextui-org/react';
+import { Button, Container, Grid, Avatar, Text, Spacer } from '@nextui-org/react';
 import { Link } from 'react-router-dom'
 
 export default function Nav() {
@@ -15,7 +15,9 @@ export default function Nav() {
     <>
       <Container fluid >
         <Grid.Container gap={2} justify="center" alignItems="center">
-          <Grid xs >
+          <Grid xs={5} alignItems="center">
+          <Text h1 css={{ textGradient: '45deg, $blue500 -20%, $pink500 50%'}} weight="bold"> 한글 쓰다 </Text>
+          <Spacer x={1} />
             {
               authStatus ?
               <Link to="/">
@@ -23,7 +25,7 @@ export default function Nav() {
               </Link>
               :
               <Link to="/">
-                <Button auto>Home</Button>
+                <Button color="" auto>Home</Button>
               </Link>
             }
           </Grid>

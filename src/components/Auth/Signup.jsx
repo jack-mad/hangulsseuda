@@ -37,7 +37,7 @@ export default function Signup() {
       <Container fluid css={{ my: "20vh" }}>
         <Grid.Container gap={1} justify="center">
           <Grid xs></Grid>
-          <Grid xs={8} justify="center">
+          <Grid xs={10} md={8} lg={6} xl={5} justify="center">
             <Grid xs={12} sm={5}>
               <Card cover css={{ w: '100%' }}>
                 <Card.Header css={{
