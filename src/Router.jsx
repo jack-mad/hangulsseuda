@@ -5,6 +5,7 @@ import Lesson from './components/Home/Lesson'
 import Signin from './components/Auth/Signin'
 import Signup from './components/Auth/Signup'
 import Auth from './routes/Auth'
+import AuthOk from './routes/AuthOk'
 import UsersState from './context/Users/UsersState';
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="signup" element={<Auth component={Signup} />} />
             <Route path="signin" element={<Auth component={Signin} />} />
-            <Route path="lesson" element={<Lesson />} />
+            <Route path="lesson/:name" element={<AuthOk component={Lesson} />} />
           </Route>
         </Routes>
       </BrowserRouter>

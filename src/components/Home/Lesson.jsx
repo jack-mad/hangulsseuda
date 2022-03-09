@@ -1,7 +1,8 @@
-import { useRef } from 'react'
-
-import { Text, Card, Grid, Spacer, Row, Button } from '@nextui-org/react'
+import { useRef, useState, useEffect } from 'react'
+import { useParams, Link } from 'react-router-dom';
+import { Text, Card, Grid, Spacer, Row, Col, Button, Loading } from '@nextui-org/react'
 import CanvasDraw from 'react-canvas-draw'
+import axiosClient from '../../config/axios';
 
 
 export default function Lesson() {
@@ -63,32 +64,69 @@ export default function Lesson() {
     r2.current.clear();
     r3.current.clear();
     r4.current.clear();
+
+    window.history.back()
   }
+
+  const {name}  = useParams()
+  console.log(name);
+
+  const [newCharacter, setNewCharacter] = useState(null)
+
+  useEffect(() => { 
+    const char = async () => {
+      const { data } = await axiosClient.get(`/api/seed/one/${name}`)
+      console.log(data.data[0]);
+      setNewCharacter(data.data[0])
+    }
+    char()
+  },[])
 
   return (
     <>
-      <Text h1 size={100} css={{ textGradient: '45deg, $purple500 -40%, $pink500 100%' }} weight="bold">수업 - Lesson 1.1</Text>
+    {
+      newCharacter? 
+      <Text h1 size={100} css={{ textGradient: '45deg, $purple500 -40%, $pink500 100%' }} weight="bold">Level {newCharacter.level}</Text>
+      :
+      <Loading type="spinner" size="xl" color="secondary"/>
+    }
+      
       <Grid.Container gap={3}>
         <Grid xs={5}>
           <Card bordered shadow={true} css={{ background: '$blue200' }} >
             <Card.Header>
               <Spacer x={1} />
-              <Text h1 size={80}color="$blue500" weight="bold" >The vowel A</Text>
+              {
+                newCharacter? 
+                <Text h1 size={80}color="$blue500" weight="bold" >Name: {newCharacter.name}</Text>
+                :
+                <Loading type="spinner" size="xl" color="secondary"/>
+              }
+              
             </Card.Header>
             <Card.Body css={{ pt: '0px', mt: '-80px'}}>
 
               <Grid.Container gap={2}>
                 <Row >
                   <Grid xs={12} justify="center" alignItems="center" >
-                  <Text h1 color="secondary" size={300} weight="bold" >ㅏ</Text>
+                  {
+                    newCharacter? 
+                    <Text h1 color="secondary" size={300} weight="bold" >{newCharacter.character}</Text>
+                    :
+                    <Loading type="spinner" size="xl" color="secondary"/>
+                  }
                   </Grid>
                 </Row>
-                <Row justify="center" alignItems="center">
-                  <Grid>
-                    <Button onClick={() => { saveAll() }} color="success" size="xl" auto><Text h2 color="white" weight="bold">Save and Next lesson</Text></Button>
-                  </Grid>
-                  
-                </Row>
+                <Col justify="center" align="center" css={{ pt: '0px', mt: '-80px'}}>
+                  {
+                    newCharacter? 
+                      <Text h1 color="$pink600" weight="bold" >Sounds like: {newCharacter.soundsLike} </Text>
+                    :
+                    <Loading type="spinner" size="xl" color="secondary"/>
+                  }
+                    <Spacer y={2} />
+                    <Button onClick={() => { saveAll() }} color="success" size="xl" auto><Text h2 color="white" weight="bold">Save lesson and back </Text></Button>
+                </Col>
               </Grid.Container>
 
             </Card.Body>
@@ -105,10 +143,15 @@ export default function Lesson() {
               <Grid.Container gap={2}>
                 <Row >
                   <Grid xs={12} justify="center" alignItems="center" >
-                    <CanvasDraw lazyRadius={0} brushRadius={14} hideGrid={true} imgSrc='https://i.ibb.co/FDD6yPq/a.png' width={400} height={400} ref={main} />
+                  {
+                    newCharacter? 
+                    <CanvasDraw lazyRadius={0} brushRadius={14} hideGrid={true} imgSrc={newCharacter.imageUrl} width={400} height={400} ref={main} />
+                    :
+                    <Loading type="spinner" size="xl" color="secondary"/>
+                  }
                   </Grid>
                 </Row>
-                <Row justify="center" alignItems="center">
+                <Row justify="center" align="center">
                   <Grid>
                     <Button onClick={() => mainUndo()} color="primary" size="xl" auto> <img src="https://img.icons8.com/ios-filled/30/ffffff/undo.png" alt="Undo" /> </Button>
                   </Grid>
@@ -134,10 +177,15 @@ export default function Lesson() {
               <Grid.Container gap={2}>
                   <Row >
                     <Grid xs={12} justify="center" alignItems="center" >
-                      <CanvasDraw lazyRadius={0} brushRadius={14} hideGrid={true} imgSrc='https://i.ibb.co/FDD6yPq/a.png' ref={r1} />
+                    {
+                    newCharacter? 
+                    <CanvasDraw lazyRadius={0} brushRadius={14} hideGrid={true} imgSrc={newCharacter.imageUrl} ref={r1} />
+                    :
+                    <Loading type="spinner" size="xl" color="secondary"/>
+                  }
                     </Grid>
                   </Row>
-                  <Row justify="center" alignItems="center">
+                  <Row justify="center" align="center">
                     <Grid>
                       <Button onClick={() => r1Undo()} color="primary" size="xl" auto> <img src="https://img.icons8.com/ios-filled/30/ffffff/undo.png" alt="Undo" /> </Button>
                     </Grid>
@@ -152,10 +200,16 @@ export default function Lesson() {
               <Grid.Container gap={2}>
                   <Row >
                     <Grid xs={12} justify="center" alignItems="center" >
-                      <CanvasDraw lazyRadius={0} brushRadius={14} hideGrid={true} imgSrc='https://i.ibb.co/FDD6yPq/a.png' ref={r2} />
+                    {
+                    newCharacter? 
+                    <CanvasDraw lazyRadius={0} brushRadius={14} hideGrid={true} imgSrc={newCharacter.imageUrl} ref={r2} />
+                    :
+                    <Loading type="spinner" size="xl" color="secondary"/>
+                  }
+                      
                     </Grid>
                   </Row>
-                  <Row justify="center" alignItems="center">
+                  <Row justify="center" align="center">
                     <Grid>
                       <Button onClick={() => r2Undo()} color="primary" size="xl" auto> <img src="https://img.icons8.com/ios-filled/30/ffffff/undo.png" alt="Undo" /> </Button>
                     </Grid>
@@ -170,10 +224,15 @@ export default function Lesson() {
               <Grid.Container gap={2}>
                   <Row >
                     <Grid xs={12} justify="center" alignItems="center" >
-                      <CanvasDraw lazyRadius={0} brushRadius={14} hideGrid={true} imgSrc='https://i.ibb.co/FDD6yPq/a.png' ref={r3} />
+                    {
+                    newCharacter? 
+                    <CanvasDraw lazyRadius={0} brushRadius={14} hideGrid={true} imgSrc={newCharacter.imageUrl} ref={r3} />
+                    :
+                    <Loading type="spinner" size="xl" color="secondary"/>
+                  }
                     </Grid>
                   </Row>
-                  <Row justify="center" alignItems="center">
+                  <Row justify="center" align="center">
                     <Grid>
                       <Button onClick={() => r3Undo()} color="primary" size="xl" auto> <img src="https://img.icons8.com/ios-filled/30/ffffff/undo.png" alt="Undo" /> </Button>
                     </Grid>
@@ -188,10 +247,15 @@ export default function Lesson() {
               <Grid.Container gap={2}>
                   <Row >
                     <Grid xs={12} justify="center" alignItems="center" >
-                      <CanvasDraw lazyRadius={0} brushRadius={14} hideGrid={true} imgSrc='https://i.ibb.co/FDD6yPq/a.png' ref={r4} />
+                    {
+                    newCharacter? 
+                    <CanvasDraw lazyRadius={0} brushRadius={14} hideGrid={true} imgSrc={newCharacter.imageUrl} ref={r4} />
+                    :
+                    <Loading type="spinner" size="xl" color="secondary"/>
+                  }
                     </Grid>
                   </Row>
-                  <Row justify="center" alignItems="center">
+                  <Row justify="center" align="center">
                     <Grid>
                       <Button onClick={() => r4Undo()} color="primary" size="xl" auto> <img src="https://img.icons8.com/ios-filled/30/ffffff/undo.png" alt="Undo" /> </Button>
                     </Grid>
