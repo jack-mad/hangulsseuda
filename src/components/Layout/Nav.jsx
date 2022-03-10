@@ -11,6 +11,7 @@ export default function Nav() {
         authStatus,
         logoutUser
     } = ctxUser
+
   return (
     <>
       <Container fluid >

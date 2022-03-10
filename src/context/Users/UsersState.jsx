@@ -79,6 +79,19 @@ const UsersState = (props) => {
 
 	}
 
+	const addLesson = async (json) => {
+
+		const res = await axiosClient.post("/api/users/lesson/add", json)
+		console.log(res);
+		// const token = res.data.data
+	
+		// dispatch({
+		// 	type: "REGISTRO_EXITOSO",
+		// 	payload: token
+		// })
+	
+	}
+
 
 	return (
 		<UsersContext.Provider
@@ -88,7 +101,8 @@ const UsersState = (props) => {
 				signupUser,
 				verifyingToken,
 				signinUser,
-				logoutUser
+				logoutUser,
+				addLesson
 			}}
 		>
 			{props.children}

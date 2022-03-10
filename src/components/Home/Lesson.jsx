@@ -1,11 +1,16 @@
-import { useRef, useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom';
+import { useRef, useState, useEffect,useContext } from 'react'
+import UsersContext from '../../context/Users/UsersContext'
+import { useParams } from 'react-router-dom';
 import { Text, Card, Grid, Spacer, Row, Col, Button, Loading } from '@nextui-org/react'
 import CanvasDraw from 'react-canvas-draw'
 import axiosClient from '../../config/axios';
 
 
 export default function Lesson() {
+
+  const ctxUser = useContext(UsersContext)
+
+    const { currentUser, addLesson } = ctxUser
 
   const main = useRef(null)
   const r1 = useRef(null)
@@ -57,7 +62,14 @@ export default function Lesson() {
     saveLesson.push(r3.current.getSaveData())
     saveLesson.push(r4.current.getSaveData())
 
-    console.log(saveLesson);
+    const lesson ={
+      userID : currentUser._id,
+      character: name,
+      data: saveLesson
+    }
+    
+      addLesson(lesson)
+    
 
     main.current.clear();
     r1.current.clear();
@@ -66,11 +78,12 @@ export default function Lesson() {
     r4.current.clear();
 
     window.history.back()
+    
   }
 
   const {name}  = useParams()
-  console.log(name);
-
+  // console.log(name);
+  
   const [newCharacter, setNewCharacter] = useState(null)
 
   useEffect(() => { 
