@@ -25,7 +25,8 @@ const reducer = (globalState, action) => {
 					name: "",
 					lastname: "",
 					username: "",
-					avatar: ""
+					avatar: "",
+					achievements: [],
 				}
 			}
 

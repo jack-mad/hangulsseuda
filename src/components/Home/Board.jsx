@@ -18,7 +18,7 @@ export default function Home() {
   useEffect(() => {
     const getL1 = async () => {
       const {data} = await axiosClient.get('/api/seed/level1')
-      console.log(data);
+      // console.log(data);
       setNewL1(data)
     }
     getL1();
@@ -27,7 +27,7 @@ export default function Home() {
   useEffect(() => {
     const getL2 = async () => {
       const {data} = await axiosClient.get('/api/seed/level2')
-      console.log(data);
+      // console.log(data);
       setNewL2(data)
     }
     getL2();
@@ -36,7 +36,7 @@ export default function Home() {
   useEffect(() => {
     const getL3 = async () => {
       const {data} = await axiosClient.get('/api/seed/level3')
-      console.log(data);
+      // console.log(data);
       setNewL3(data)
     }
     getL3();
@@ -45,7 +45,7 @@ export default function Home() {
   useEffect(() => {
     const getL4 = async () => {
       const {data} = await axiosClient.get('/api/seed/level4')
-      console.log(data);
+      // console.log(data);
       setNewL4(data)
     }
     getL4();
@@ -54,7 +54,7 @@ export default function Home() {
   useEffect(() => {
     const getL5 = async () => {
       const {data} = await axiosClient.get('/api/seed/level5')
-      console.log(data);
+      // console.log(data);
       setNewL5(data)
     }
     getL5();
@@ -63,7 +63,7 @@ export default function Home() {
   useEffect(() => {
     const getL6 = async () => {
       const {data} = await axiosClient.get('/api/seed/level6')
-      console.log(data);
+      // console.log(data);
       setNewL6(data)
     }
     getL6();
@@ -72,7 +72,7 @@ export default function Home() {
   useEffect(() => {
     const getL7 = async () => {
       const {data} = await axiosClient.get('/api/seed/level7')
-      console.log(data);
+      // console.log(data);
       setNewL7(data)
     }
     getL7();
@@ -81,7 +81,7 @@ export default function Home() {
   useEffect(() => {
     const getL8 = async () => {
       const {data} = await axiosClient.get('/api/seed/level8')
-      console.log(data);
+      // console.log(data);
       setNewL8(data)
     }
     getL8();
@@ -89,7 +89,7 @@ export default function Home() {
 
   return (
     <>
-      <Text h1 size={100} css={{ textGradient: '45deg, $purple500 -40%, $pink500 100%' }} weight="bold">내 보드 - My board</Text>
+      <Text h1 size={100} css={{ textGradient: '45deg, $purple500 0%, $pink500 100%' }} weight="bold">내 보드 - My board</Text>
       <Grid.Container gap={3}>
         <Grid xs={12}>
           {
@@ -102,7 +102,7 @@ export default function Home() {
         <Grid xs={12}>
           {
             newL2?
-              <LevelCard data={newL2.data} title={newL2.title} disabled={true}/>
+              <LevelCard data={newL2.data} title={newL2.title} disabled={false}/>
             :
               <Progress indeterminated value={50} color="secondary" status="secondary" />
           }
@@ -110,7 +110,7 @@ export default function Home() {
         <Grid xs={12}>
           {
             newL3?
-              <LevelCard data={newL3.data} title={newL3.title} disabled={true}/>
+              <LevelCard data={newL3.data} title={newL3.title} disabled={false}/>
             :
               <Progress indeterminated value={50} color="secondary" status="secondary" />
           }
@@ -118,7 +118,7 @@ export default function Home() {
         <Grid xs={12}>
           {
             newL4?
-              <LevelCard data={newL4.data} title={newL4.title} disabled={true}/>
+              <LevelCard data={newL4.data} title={newL4.title} disabled={false}/>
             :
               <Progress indeterminated value={50} color="secondary" status="secondary" />
           }
@@ -126,7 +126,7 @@ export default function Home() {
         <Grid xs={12}>
           {
             newL5?
-              <LevelCard data={newL5.data} title={newL5.title} disabled={true}/>
+              <LevelCard data={newL5.data} title={newL5.title} disabled={false}/>
             :
               <Progress indeterminated value={50} color="secondary" status="secondary" />
           }
@@ -134,7 +134,7 @@ export default function Home() {
         <Grid xs={12}>
           {
             newL6?
-              <LevelCard data={newL6.data} title={newL6.title} disabled={true}/>
+              <LevelCard data={newL6.data} title={newL6.title} disabled={false}/>
             :
               <Progress indeterminated value={50} color="secondary" status="secondary" />
           }
@@ -142,7 +142,7 @@ export default function Home() {
         <Grid xs={12}>
           {
             newL7?
-              <LevelCard data={newL7.data} title={newL7.title} disabled={true}/>
+              <LevelCard data={newL7.data} title={newL7.title} disabled={false}/>
             :
               <Progress indeterminated value={50} color="secondary" status="secondary" />
           }
@@ -150,7 +150,7 @@ export default function Home() {
         <Grid xs={12}>
           {
             newL8?
-              <LevelCard data={newL8.data} title={newL8.title} disabled={true}/>
+              <LevelCard data={newL8.data} title={newL8.title} disabled={false}/>
             :
               <Progress indeterminated value={50} color="secondary" status="secondary" />
           }

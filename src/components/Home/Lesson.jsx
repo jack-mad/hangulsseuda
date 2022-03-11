@@ -62,15 +62,17 @@ export default function Lesson() {
     saveLesson.push(r3.current.getSaveData())
     saveLesson.push(r4.current.getSaveData())
 
+    // console.log(currentUser.achievements);
+    // const getAch = currentUser.achievements.map((e)=>{ return e.character })
+    // console.log(getAch);
+
     const lesson ={
       userID : currentUser._id,
       character: name,
+      lessons: currentUser.achievements.map((e)=>{ return e.character }),
       data: saveLesson
     }
-    
-      addLesson(lesson)
-    
-
+    addLesson(lesson)
     main.current.clear();
     r1.current.clear();
     r2.current.clear();
@@ -93,7 +95,7 @@ export default function Lesson() {
       setNewCharacter(data.data[0])
     }
     char()
-  },[])
+  },[name])
 
   return (
     <>
@@ -182,7 +184,7 @@ export default function Lesson() {
           <Card bordered shadow={true} css={{ background: '$blue200' }} >
             <Card.Header>
               <Spacer x={1} />
-              <Text h1 color="$blue500" weight="bold" >5-Repeat: Please draw above each letter correctly.</Text>
+              <Text h1 color="$blue500" weight="bold" >4-Repeat: Please draw above each letter correctly.</Text>
             </Card.Header>
 
             <Grid.Container gap={2} justify="center">

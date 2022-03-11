@@ -10,7 +10,8 @@ const UsersState = (props) => {
 			name: "",
 			lastname: "",
 			username: "",
-			avatar: ""
+			avatar: "",
+			achievements: [],
 		},
 		authStatus: false
 	}
